@@ -25,8 +25,8 @@ Chungmuro:                  충무로
 '''
 
 def load_data():
-    file1 = 'train_stations.xlsx'  #Get the Excel file1
-    file2 = 'station_weights.xlsx' #Get the Excel file2
+    file1 = 'src/train_stations.xlsx'  #Get the Excel file1
+    file2 = 'src/station_weights.xlsx' #Get the Excel file2
     return file1,file2
 
 def main():
@@ -71,13 +71,13 @@ def main():
     print('Kruskal MST:')
     result,min_dist = louis_network.kruskal()
     print(f'MST:',result)
-    print(f'Minimum Total Distance',min_dist)
+    print(f'Minimum Total Distance:',min_dist)
     print()
 
     print('Prims MST:')
     result,min_dist = louis_network.prims()
     print(f'MST:',result)
-    print(f'Minimum Total Distance',min_dist)
+    print(f'Minimum Total Distance:',min_dist)
     print()
     
 if __name__ == '__main__':
