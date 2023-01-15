@@ -399,9 +399,16 @@ class Graph:
                 new_graph.union(parent, rank, x, y) #perform union-find operator
         
         min_cost = 0 #calculate the min cost
+        results = {
+            'Edge':[],
+            'Weight':[]
+        }
         for u,v,weight in result: #for each node u,v and edge weight
             min_cost+=weight #add the weight to the min cost
-        return result,min_cost #return the results and the min cost
+            results['Edge'].append(str(u)+'-'+str(v))
+            results['Weight'].append(weight)
+        
+        return results,min_cost #return the results and the min cost
 
 
     #Prim's Minimum Spanning Tree Algorithm
