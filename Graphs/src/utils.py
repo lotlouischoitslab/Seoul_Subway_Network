@@ -279,8 +279,8 @@ class Graph:
                     Next[i][j] = j #Otherwise the neighbor index
 
         for k in range(V): #calculate shortest-paths
-            for j in range(V):
-                for i in range(V):
+            for i in range(V):
+                for j in range(V):
                     if (dist[i][k] == float('inf') or dist[k][j] == float('inf')):
                         continue #continue on
                     if (dist[i][j] > dist[i][k] + dist[k][j]): #we found minimum path
