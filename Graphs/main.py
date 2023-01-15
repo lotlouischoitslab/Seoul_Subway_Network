@@ -67,7 +67,6 @@ def main():
     print(f'Minimum Distance:',distances)
     print()
 
-
     print('Kruskal MST:')
     result,min_dist = louis_network.kruskal()
     print(f'MST:',result)
