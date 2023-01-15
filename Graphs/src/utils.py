@@ -60,9 +60,11 @@ class Graph:
 
     #Number of Edges
     def numedges(self):
-        if self.directed:
-            return (self.numvertices()*(self.numvertices()-1))/2
-        return self.numvertices()*(self.numvertices()-1)
+        count = 0
+        for node in self.nodes:
+            for neighbor,weight in self.graph[node]:
+                count+=1
+        return count
     
     #Number of Vertices/Nodes
     def numvertices(self):
@@ -276,9 +278,9 @@ class Graph:
                 else:
                     Next[i][j] = j #Otherwise the neighbor index
 
-        for i in range(V): #calculate shortest-paths
+        for k in range(V): #calculate shortest-paths
             for j in range(V):
-                for k in range(V):
+                for i in range(V):
                     if (dist[i][k] == float('inf') or dist[k][j] == float('inf')):
                         continue #continue on
                     if (dist[i][j] > dist[i][k] + dist[k][j]): #we found minimum path
