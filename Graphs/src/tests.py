@@ -201,13 +201,13 @@ def testnetworkgenerator():
     print('A-Star Algorithm:')
     path,distances = net.astar(source,target)
     print(f'Shortest Path from {source} to {target}:',path)
-    print(f'Minimum Distance',distances)
+    print(f'Minimum Distance:',distances)
     print()
 
     print('Bellman-Ford Algorithm:')
     path,distances = net.bellman_ford(source,target)
     print(f'Shortest Path from {source} to {target}:',path)
-    print(f'Minimum Distance',distances)
+    print(f'Minimum Distance:',distances)
     print()
 
     print('Dijkstra Algorithm:')
