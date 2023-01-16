@@ -194,9 +194,13 @@ def testnetworkgenerator():
     net.network_generator(file1,file2)
     # net.print_graph()
 
+    nodes = list(net.nodes)
+    #print(nodes)
+
     source = 'Jongno_3_Ga'
     target = 'Hoehyeon'
-    #target = 'Dongdaemun_Design_Plaza'
+    target = 'Dongdaemun_Design_Plaza'
+    target = 'Dongdaemun'
 
     print('A-Star Algorithm:')
     path,distances = net.astar(source,target)

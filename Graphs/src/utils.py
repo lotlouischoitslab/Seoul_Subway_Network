@@ -193,27 +193,17 @@ class Graph:
             distances[n] = float('inf')
         
         distances[source] = 0 #Initialize the starting source to be 0
-        visited = set() #create a set of visited nodes
         parent = dict() #dictionary of parent nodes which will be backtracked to reconstruct paths
 
         while queue: #BFS (Barbequeue)
             node,w = hq.heappop(queue) #pop the queue
-            if node in visited: #If the current node is visited
-                continue #Don't stop and please proceed onwards
-
-            visited.add(node) #add the current node to the visited set
             dist = distances[node] #update the distance to be the current distance 
             
             for neighbor,weight in self.graph[node]:
-                if neighbor in visited: #Likewise if the neighbor is visited
-                    continue #Don't stop proceed to the next stage
-                
-                weight += dist #modify the weight
-                if weight < distances.get(neighbor, float('inf')): #if this path is optimal
+                if distances[node] != float('inf') and distances[node]+weight < distances[neighbor]:  #if this path is optimal
                     hq.heappush(queue, (neighbor,weight)) #let's add it to the priority queue
-                    distances[neighbor] = weight #update the distances as well
+                    distances[neighbor] = distances[node]+weight #update the distances as well
                     parent[neighbor] = node #set the neighbor parent to the current node
-                    
                 
         path = self.construct_path(source, target, parent, distances)
         return path,distances[target] #return the path and optimal weight to arrive to that final target
@@ -267,13 +257,15 @@ class Graph:
     #Floyd-Warshall Algorithm is much more optimized version of Bellman-Ford Algorithm
     def floyd_warshall(self,source,target):
         V = len(self.nodes) #V is going to be the number of nodes/vertices in the graph
-        Next = [[float('inf') for j in range(V)] for i in range(V)] #likewise all the next values
+        dist = [[-1 for j in range(V)] for i in range(V)]
+        Next = [[-1 for j in range(V)] for i in range(V)] #likewise all the next values
         yes_inf = True #We are going to by default set everything to +inf
-        dist = self.convert_to_matrix(V,yes_inf) #convert this to adjacency matrix
+        graph = self.convert_to_matrix(V,yes_inf) #convert this to adjacency matrix
 
         for i in range(V): #we are going to iterate through the graph network 
             for j in range(V): #same situation for here too
-                if dist[i][j] == float('inf'): #if the distance from i to j is infinite, no path exists
+                dist[i][j] = graph[i][j]
+                if graph[i][j] == float('inf'): #if the distance from i to j is infinite, no path exists
                     Next[i][j] = -1 #Next[i][j] is assigned as -1
                 else:
                     Next[i][j] = j #Otherwise the neighbor index
@@ -289,16 +281,21 @@ class Graph:
         
         src_index = self.nodes.index(source) #source index
         targ_index = self.nodes.index(target) #target index
-        path = self.floyd_path(Next,src_index,targ_index) #reconstruct the Floyd-Warshall Path
+        path = self.floyd_path(Next,src_index,targ_index,dist) #reconstruct the Floyd-Warshall Path
         return path,dist[src_index][targ_index] #return the path and the distance from source to target 
 
-    def floyd_path(self,Next,u,v): #Helper function for Floyd-Warshall
+    def floyd_path(self,Next,u,v,dist): #Helper function for Floyd-Warshall
         if Next[u][v] == -1: #If Next is -1 this means no path exists
             return [] #return empty list
-        path = [[self.nodes[u],u]] #Assign the path to be the soure node first
+        path = [[self.nodes[u]]] #Assign the path to be the soure node first
+        temp = [dist[u][v]]
         while u != v: #while the source node is NOT equal to the target node
             u = Next[u][v] #keep updating the source
-            path.append([self.nodes[u],u]) #keep updating the path
+            path.append([self.nodes[u]]) #keep updating the path
+            temp.append(dist[u][v])
+        temp.reverse()
+        for key,val in enumerate(path):
+            path[key].append(temp[key])
         return path #return the path
 
     #Topological Sort Algorithm
