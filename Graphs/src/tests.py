@@ -195,12 +195,23 @@ def testnetworkgenerator():
     # net.print_graph()
 
     nodes = list(net.nodes)
-    #print(nodes)
+    print(nodes)
+    temp = ['Jongno_3_Ga', 'Jongno_5_Ga', 'Dongdaemun', 'Jonggak', 'City_Hall', 'Euljiro_1_Ga', 'Euljiro_3_Ga', 'Euljiro_4_Ga', 'Dongdaemun_Design_Plaza', 'Seoul_Station', 'Hoehyeon', 'Myeongdong', 'Chungmuro']
 
     source = 'Jongno_3_Ga'
-    target = 'Hoehyeon'
-    target = 'Dongdaemun_Design_Plaza'
-    #target = 'Dongdaemun'
+
+    # target = 'Jongno_5_Ga'
+    # target = 'Dongdaemun'
+    # target = 'Jonggak'
+    # target = 'City_Hall'
+    # target = 'Euljiro_1_Ga'
+    # target = 'Euljiro_3_Ga'
+    # target = 'Euljiro_4_Ga'
+    # target = 'Dongdaemun_Design_Plaza'
+    # target = 'Seoul_Station'
+    # target = 'Hoehyeon'
+    # target = 'Myeongdong'
+    target = 'Chungmuro'
 
     print('A-Star Algorithm:')
     path,distances = net.astar(source,target)
