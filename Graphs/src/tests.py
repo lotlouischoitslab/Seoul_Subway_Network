@@ -200,7 +200,7 @@ def testnetworkgenerator():
     source = 'Jongno_3_Ga'
     target = 'Hoehyeon'
     target = 'Dongdaemun_Design_Plaza'
-    target = 'Dongdaemun'
+    #target = 'Dongdaemun'
 
     print('A-Star Algorithm:')
     path,distances = net.astar(source,target)

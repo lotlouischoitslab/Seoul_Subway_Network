@@ -188,9 +188,7 @@ class Graph:
     #Dijkstra: all possible shortest paths from one source given that it is DAG (Directed Acyclic Graphs) with no negative-weight edges!
     def dijkstra(self,source,target): 
         queue = [(source,0)] #Initialize queue (node,weight)
-        distances = {}
-        for n in self.nodes:
-            distances[n] = float('inf')
+        distances = {n : float('inf') for n in self.nodes} #Initialize all the nodes to be +inf
         
         distances[source] = 0 #Initialize the starting source to be 0
         parent = dict() #dictionary of parent nodes which will be backtracked to reconstruct paths
