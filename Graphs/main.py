@@ -48,7 +48,7 @@ def graph_visualizer(graph):
     nx.draw_networkx_edge_labels(G, pos,edge_labels=labels)
     plt.axis('off')
     plt.draw()
-    plt.savefig("../images/metro_network.pdf")
+    plt.savefig("../images/metro_network.png")
 
 
 def main():
