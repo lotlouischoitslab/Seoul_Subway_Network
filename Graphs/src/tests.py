@@ -132,7 +132,7 @@ def test_kruskal():
     
     result,min_cost = g.kruskal()
     print('Kruskal Result:',result)
-    print('Kruskal Minimum Cost',min_cost)
+    print('Kruskal Minimum Cost:',min_cost)
     
 def test_prims():
     g = Graph([0,1,2,3,4])
@@ -250,10 +250,10 @@ def testnetworkgenerator():
     print(f'Minimum Distance',min_dist)
     print()
 
-testnetworkgenerator()
+#testnetworkgenerator()
 #test1() #Graph Algorithms
 #testcs() #Computer Science Courses Topological Sorting
 #testbellman() #Bellman-Ford Algorithm
 #testfloyd_warshall() #Floyd-Warshal Algorithm
-#test_kruskal() #Kruskal Minimum-Spanning Tree Algorithm
-#test_prims() #Prims Minimum-Spanning Tree Algorithm
+test_kruskal() #Kruskal Minimum-Spanning Tree Algorithm
+test_prims() #Prims Minimum-Spanning Tree Algorithm
