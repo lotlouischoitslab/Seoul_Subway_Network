@@ -3,6 +3,6 @@
 - ### Louis Sungwoo Cho 조성우 
 
 ## Project Description 프로젝트 설명
-This project analyzes path optimization in Seoul's subway network. 
+This project analyzes path optimization in Seoul's subway network.
 
 ![title](images/seoul_metro2.png)
