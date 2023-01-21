@@ -97,7 +97,8 @@ def main():
     print()
 
     print('Prims MST:')
-    result,min_dist = louis_network.prims()
+    source = 'Seoul_Station'
+    result,min_dist = louis_network.prims(source)
     print(f'MST:',result)
     print(f'Minimum Total Distance:',min_dist)
     print()

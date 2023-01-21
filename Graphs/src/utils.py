@@ -419,28 +419,30 @@ class Graph:
                 min_index = v #minimum index becomes v
         return min_index #return the minimum index
     
-    def prims(self):
+    def prims(self,source):
         V = len(self.nodes) #number of vertices
         key = [float('inf')]*V #initialize all the keys to be +inf
         parent = [None]*V #all parents will be initialized as None value
-        key[0] = 0 #first one if initialized as 0
+        source_index = int(self.nodes.index(source)) #We want to get the source index
+        key[source_index] = 0 #Source node if initialized as 0
         mst = [False]*V  #all are initialized as False
-        parent[0] = -1 #First node is always the root of tree
+        parent[source_index] = -1 #Sourec node is always the root of tree
 
         new_graph = Graph(self.nodes) #Create new Graph object so we can perform Deep Copy 
         new_graph.copy_graph(self.graph) #Deep Copy of the graph
         new_graph,int_nodes = new_graph.convert_node_to_int() #convert all the nodes into integers
         yes_inf = False  #we are going to by default set all the nodes in the matrix to 0
+        
         adj_matrix = new_graph.convert_to_matrix(V,yes_inf) #build the adjacency list
 
-        for c in range(V):
+        for i in range(V):
             u = self.minkey(key, mst) #now for each vertex 
             mst[u] = True  #mark the mst as visited
             
-            for v in range(V): #for each neighbor
-                if adj_matrix[u][v] > 0 and mst[v] == False and key[v] > adj_matrix[u][v]: #relaxation process
-                    key[v] = adj_matrix[u][v] #assign the key to be that
-                    parent[v] = u #update the parents
+            for j in range(V): #for each neighbor
+                if adj_matrix[u][j] and mst[j] == False and key[j] > adj_matrix[u][j]: #relaxation process
+                    key[j] = adj_matrix[u][j] #assign the key to be that
+                    parent[j] = u #update the parents
         result = {
             'Edge':[],
             'Weight':[]

@@ -156,8 +156,8 @@ def test_prims():
 
     g.addedge(3,4,9)
     g.addedge(4,3,9)
-  
-    result,min_cost = g.prims() 
+    source = 'Seoul_Station'
+    result,min_cost = g.prims(source) 
     print('Prims Result:',result)
     print('Prim Minimum Cost',min_cost)
 
@@ -245,7 +245,8 @@ def testnetworkgenerator():
     print()
 
     print('Prims MST:')
-    result,min_dist = net.prims()
+    source = 'Seoul_Station'
+    result,min_dist = net.prims(source)
     print(f'Prims MST:',result)
     print(f'Minimum Distance',min_dist)
     print()
