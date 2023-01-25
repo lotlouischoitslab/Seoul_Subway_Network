@@ -285,16 +285,22 @@ class Graph:
     def floyd_path(self,Next,u,v,dist): #Helper function for Floyd-Warshall
         if Next[u][v] == -1: #If Next is -1 this means no path exists
             return [] #return empty list
-        path = [[self.nodes[u]]] #Assign the path to be the soure node first
-        temp = [dist[u][v]]
+        path = [self.nodes[u]] #Assign the path to be the soure node first
+
         while u != v: #while the source node is NOT equal to the target node
             u = Next[u][v] #keep updating the source
-            path.append([self.nodes[u]]) #keep updating the path
-            temp.append(dist[u][v])
-        temp = temp[::-1]
-        for key,val in enumerate(path):
-            path[key].append(temp[key])
-        return path #return the path
+            path.append(self.nodes[u]) #keep updating the path
+
+        to_ret = [[path[0],0]]
+        weight = 0
+      
+        for i in range(0,len(path)-1):
+            src = self.nodes.index(path[i])
+            trg = self.nodes.index(path[i+1])
+            weight += dist[src][trg]
+            to_ret.append([path[i+1],weight])
+
+        return to_ret
 
     #Topological Sort Algorithm
     #We use Topological Sort Algorithm in cases when the source vertex of the graph is unknown 
