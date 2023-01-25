@@ -292,7 +292,6 @@ class Graph:
             path.append([self.nodes[u]]) #keep updating the path
             temp.append(dist[u][v])
         temp = temp[::-1]
-        print(temp)
         for key,val in enumerate(path):
             path[key].append(temp[key])
         return path #return the path
