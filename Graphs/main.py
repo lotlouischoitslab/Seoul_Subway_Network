@@ -63,7 +63,8 @@ def main():
     print()
 
     source = 'Jongno_3_Ga'
-    target = 'Hoehyeon'
+    target = 'Seoul_Station'
+    #target = 'Hoehyeon'
     #target = 'Dongdaemun_Design_Plaza'
 
     print('A-Star Algorithm:')
@@ -90,18 +91,18 @@ def main():
     print(f'Minimum Distance:',distances)
     print()
 
-    print('Kruskal MST:')
-    result,min_dist = louis_network.kruskal()
-    print(f'MST:',result)
-    print(f'Minimum Total Distance:',min_dist)
-    print()
+    # print('Kruskal MST:')
+    # result,min_dist = louis_network.kruskal()
+    # print(f'MST:',result)
+    # print(f'Minimum Total Distance:',min_dist)
+    # print()
 
-    print('Prims MST:')
-    source = 'Seoul_Station'
-    result,min_dist = louis_network.prims(source)
-    print(f'MST:',result)
-    print(f'Minimum Total Distance:',min_dist)
-    print()
+    # print('Prims MST:')
+    # source = 'Seoul_Station'
+    # result,min_dist = louis_network.prims(source)
+    # print(f'MST:',result)
+    # print(f'Minimum Total Distance:',min_dist)
+    # print()
     
 if __name__ == '__main__':
     main()

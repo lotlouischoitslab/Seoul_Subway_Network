@@ -247,7 +247,7 @@ class Graph:
         dist = [[float('inf') if yes_inf == True else 0 for j in range(V)] for i in range(V)] #all distances will be initialized as +inf
         
         for node in self.nodes: #for each node in the graph network
-            dist[self.nodes.index(node)][self.nodes.index(node)] = 0 #diagonal to be set to 0
+            dist[self.nodes.index(node)][self.nodes.index(node)] = 0
             for neighbor,weight in self.graph[node]: #for each neighbor in the node
                 dist[self.nodes.index(node)][self.nodes.index(neighbor)] = weight #distance from i->j is assigned as respective weight
         return dist 
@@ -255,28 +255,28 @@ class Graph:
     #Floyd-Warshall Algorithm is much more optimized version of Bellman-Ford Algorithm
     def floyd_warshall(self,source,target):
         V = len(self.nodes) #V is going to be the number of nodes/vertices in the graph
-        dist = [[-1 for j in range(V)] for i in range(V)]
-        Next = [[-1 for j in range(V)] for i in range(V)] #likewise all the next values
+        dist = [[-1 for jx in range(V)] for ix in range(V)]
+        Next = [[-1 for jx in range(V)] for ix in range(V)] #likewise all the next values
         yes_inf = True #We are going to by default set everything to +inf
         graph = self.convert_to_matrix(V,yes_inf) #convert this to adjacency matrix
 
-        for i in range(V): #we are going to iterate through the graph network 
-            for j in range(V): #same situation for here too
-                dist[i][j] = graph[i][j]
-                if graph[i][j] == float('inf'): #if the distance from i to j is infinite, no path exists
-                    Next[i][j] = -1 #Next[i][j] is assigned as -1
+        for idx in range(V): #we are going to iterate through the graph network 
+            for jdx in range(V): #same situation for here too
+                dist[idx][jdx] = graph[idx][jdx]
+                if graph[idx][jdx] == float('inf'): #if the distance from i to j is infinite, no path exists
+                    Next[idx][jdx] = -1 #Next[i][j] is assigned as -1
                 else:
-                    Next[i][j] = j #Otherwise the neighbor index
+                    Next[idx][jdx] = jdx #Otherwise the neighbor index
 
         for k in range(V): #calculate shortest-paths
             for i in range(V):
                 for j in range(V):
                     if (dist[i][k] == float('inf') or dist[k][j] == float('inf')):
                         continue #continue on
-                    if (dist[i][j] > dist[i][k] + dist[k][j]): #we found minimum path
+                    if ( dist[i][j] > dist[i][k] + dist[k][j]): #we found minimum path
                         dist[i][j] = dist[i][k] + dist[k][j] #assign it to the distance from i->j
                         Next[i][j] = Next[i][k] #assign the next column value
-        
+
         src_index = self.nodes.index(source) #source index
         targ_index = self.nodes.index(target) #target index
         path = self.floyd_path(Next,src_index,targ_index,dist) #reconstruct the Floyd-Warshall Path
@@ -291,7 +291,8 @@ class Graph:
             u = Next[u][v] #keep updating the source
             path.append([self.nodes[u]]) #keep updating the path
             temp.append(dist[u][v])
-        temp.reverse()
+        temp = temp[::-1]
+        print(temp)
         for key,val in enumerate(path):
             path[key].append(temp[key])
         return path #return the path

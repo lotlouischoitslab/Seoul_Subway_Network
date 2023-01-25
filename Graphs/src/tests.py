@@ -254,6 +254,6 @@ def testnetworkgenerator():
 #test1() #Graph Algorithms
 #testcs() #Computer Science Courses Topological Sorting
 #testbellman() #Bellman-Ford Algorithm
-#testfloyd_warshall() #Floyd-Warshal Algorithm
-test_kruskal() #Kruskal Minimum-Spanning Tree Algorithm
-test_prims() #Prims Minimum-Spanning Tree Algorithm
+testfloyd_warshall() #Floyd-Warshal Algorithm
+#test_kruskal() #Kruskal Minimum-Spanning Tree Algorithm
+#test_prims() #Prims Minimum-Spanning Tree Algorithm
