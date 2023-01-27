@@ -9,10 +9,13 @@ This project analyzes path optimization in Seoul's subway network using various 
 
 ## Commands:
 First clone the repository:
+
         git clone "https://github.com/lotlouischoitslab/Seoul_Subway_Optimal_Path_Finder"
     
-Then on your VSCode terminal, go to the Graphs folder:  
+Then on your VSCode terminal, go to the Graphs folder: 
+
         cd Graphs
     
 Then run the main function by typing this command:
+
         python main.py
