@@ -1,4 +1,4 @@
-## Seoul Subway Path Optimization </br> 서울지하철 최단경로 찾기
+## Seoul Subway Path Optimization | 서울지하철 최단경로 찾기
 ## Contributors 팀원목록:
 - ### Louis Sungwoo Cho 조성우 
 
