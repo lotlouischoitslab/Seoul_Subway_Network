@@ -50,24 +50,11 @@ def main():
     print('Seoul Metro Shortest Paths by Louis Sungwoo Cho')
     print('조성우 서울지하철 최단경로찾기')
     # print()
-    # subway = load_data()
-    # print(subway)
+    subway = load_data()
+    print(subway)
+    subway.to_csv('Data/stations.csv')
 
-    nodes = ['A','B','C','D','E']
-    graph = Graph(nodes)
-
-    # Add edges to the graph
-    graph.add_edge('A', 'B', 1)
-    graph.add_edge('A', 'C', 1)
-    graph.add_edge('B', 'D', 1)
-    graph.add_edge('C', 'D', 1)
-    graph.add_edge('C', 'E', 1)
-
-    graph.print_graph()
-
-    source = 'A'
-    result = graph.bfs(source)
-    print(result)  
+     
 
    
     
