@@ -51,8 +51,47 @@ def test3(): # BFS & DFS
     dfs_result = graph.dfs(source)
     print('DFS:',dfs_result)
 
+def testastar():
+    print('Test A*')
+    nodes = ['A','B','C','D','E']
+    graph = Graph(nodes)
+
+    # Add edges to the graph
+    graph.add_edge('A', 'B', 1)
+    graph.add_edge('A', 'C', 5)
+    graph.add_edge('B', 'D', 3)
+    graph.add_edge('C', 'D', 2)
+    graph.add_edge('C', 'E', 7)
+    graph.add_edge('D', 'E', 2)
+
+    source = 'A'
+    target = 'B'
+
+    astar_result = graph.astar(source,target)
+    print('A*:',astar_result) 
+
+def testdijkstra():
+    print('Dijkstra')
+    nodes = ['A','B','C','D','E']
+    graph = Graph(nodes)
+
+    # Add edges to the graph
+    graph.add_edge('A', 'B', 1)
+    graph.add_edge('A', 'C', 5)
+    graph.add_edge('B', 'D', 3)
+    graph.add_edge('C', 'D', 2)
+    graph.add_edge('C', 'E', 7)
+    graph.add_edge('D', 'E', 2)
+
+    source = 'A'
+    target = 'B'
+
+    dijkstra_result = graph.dijkstra(source,target)
+    print('Dijkstra:',dijkstra_result) 
 
 if __name__ == '__main__':
     test1()
     test2()
     test3()
+    testastar()
+    testdijkstra()
