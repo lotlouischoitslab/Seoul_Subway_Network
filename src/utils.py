@@ -52,6 +52,22 @@ class Graph:
                 counter += 1 
         return counter 
     
+    def degree(self,node):
+        node = tuple(node) 
+        if node in self.nodes:
+            in_degree = 0 
+            out_degree = len(self.graph[node])
+
+            for n in self.nodes: 
+                if node != n:
+                    for neighbor,weight in self.graph[n]:
+                        if neighbor == node:
+                            in_degree += 1
+
+            return in_degree,out_degree
+        else:
+            return None,None 
+
     def print_graph(self):
         for n in self.nodes:
-            print(n,'-->',self.graph[n])
+            print(n,'-->',self.graph[n]) 
