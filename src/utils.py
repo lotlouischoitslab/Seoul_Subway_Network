@@ -41,3 +41,17 @@ class Graph:
         v = tuple(v) 
         if u in self.nodes and v in self.nodes:
             self.graph[u].remove((v,weight))
+    
+    def num_nodes(self):
+        return len(self.nodes) 
+    
+    def num_edges(self):
+        counter = 0 
+        for n in list(self.graph.keys()):
+            for neighbor,weight in self.graph[n]:
+                counter += 1 
+        return counter 
+    
+    def print_graph(self):
+        for n in self.nodes:
+            print(n,'-->',self.graph[n])
