@@ -71,3 +71,25 @@ class Graph:
     def print_graph(self):
         for n in self.nodes:
             print(n,'-->',self.graph[n]) 
+    
+    def bfs(self,source):
+        if len(self.graph) == 0:
+            return []
+        
+        source = tuple(source)
+        to_traverse = [source]
+        queue = [source]
+        visited = set() 
+
+        while len(queue) != 0:
+            v = queue.pop(0) 
+            visited.add(v) 
+
+            for neighbor,weight in self.graph[v]:
+                if neighbor not in visited:
+                    queue.append(neighbor) 
+                    to_traverse.append(neighbor)
+                else:
+                    continue 
+        
+        return to_traverse
