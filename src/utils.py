@@ -86,10 +86,23 @@ class Graph:
             visited.add(v) 
 
             for neighbor,weight in self.graph[v]:
-                if neighbor not in visited:
+                if neighbor not in visited and neighbor not in queue:
                     queue.append(neighbor) 
                     to_traverse.append(neighbor)
-                else:
-                    continue 
+        
+        return to_traverse
+
+    def dfs(self,source):
+        visited = set()
+        source = tuple(source)
+        return self.dfs_recursive(source,visited,[])
+    
+    def dfs_recursive(self,source,visited,to_traverse):
+        visited.add(source) 
+        to_traverse.append(source) 
+
+        for neighbor,weight in self.graph[source]:
+            if neighbor not in visited:
+                self.dfs_recursive(neighbor,visited,to_traverse)
         
         return to_traverse
