@@ -4,78 +4,78 @@ import copy
 import heapq as hq
 from queue import PriorityQueue
 
-class Graph:
+class Graph: # Graph Class
     def __init__(self,nodes):
-        self.graph = dict()
-        self.nodes = [tuple(n) for n in nodes]
+        self.graph = dict() # Initialize an empty graph 
+        self.nodes = [tuple(n) for n in nodes] # convert all the nodes into tuples
 
-        for n in self.nodes:
+        for n in self.nodes: # put all the nodes in the graph
             self.graph[n] = []
     
-    def copy_graph(self,to_copy):
+    def copy_graph(self,to_copy): # perform deep copy
         self.graph = copy.deepcopy(to_copy.graph)
         
-    def add_node(self,add_node):
-        add_node = tuple(add_node)
-        if add_node not in self.nodes:
-            self.nodes.append(add_node)
-            self.graph[add_node] = [] 
+    def add_node(self,add_node): # add a node to the graph
+        add_node = tuple(add_node) # convert the node to tuple
+        if add_node not in self.nodes: # if the node is not in the nodes
+            self.nodes.append(add_node) # we want to add the node
+            self.graph[add_node] = [] # obviously initialize this
     
     def add_edge(self,u,v,weight):
-        u = tuple(u)
-        v = tuple(v)
-        if u in self.nodes and v in self.nodes:
-            self.graph[u].append((v,weight))
+        u = tuple(u) # convert u into tuples
+        v = tuple(v) # convert v into tuples
+        if u in self.nodes and v in self.nodes: # if both are not in the nodes
+            self.graph[u].append((v,weight)) # then add 
     
-    def remove_node(self,to_remove):
-        to_remove = tuple(to_remove) 
-        self.nodes.remove(to_remove)
-        for n in list(self.graph.keys()):
-            if n == to_remove:
-                del self.graph[n]
-            else:
-                for neighbor,weight in self.graph[n]:
-                    if neighbor == to_remove:
-                        self.graph[n].remove((neighbor,weight))
+    def remove_node(self,to_remove): # remove the node
+        to_remove = tuple(to_remove) # convert to tuple
+        self.nodes.remove(to_remove) # remove this from the nodes
+        for n in list(self.graph.keys()): # for each node
+            if n == to_remove: # if this is the node we want to remove
+                del self.graph[n] # remove this node from the graph
+            else: # otherwise
+                for neighbor, weight in self.graph[n]: # for each neighboring node
+                    if neighbor == to_remove: # if this is what we want to remove
+                        self.graph[n].remove((neighbor,weight)) # remove this from the graph 
     
-    def remove_edge(self,u,v,weight):
-        u = tuple(u)
-        v = tuple(v) 
-        if u in self.nodes and v in self.nodes:
-            self.graph[u].remove((v,weight))
+    def remove_edge(self,u,v,weight): # remove the edge between u and v
+        u = tuple(u) # convert u into tuples
+        v = tuple(v) # convert v into tuples
+        if u in self.nodes and v in self.nodes: # if both u and v are in the nodes
+            self.graph[u].remove((v,weight)) # then remove the edge between them 
     
-    def num_nodes(self):
-        return len(self.nodes) 
+    def num_nodes(self): # get the number of nodes
+        return len(self.nodes) # length of the node list 
     
-    def num_edges(self):
-        counter = 0 
-        for n in list(self.graph.keys()):
-            for neighbor,weight in self.graph[n]:
-                counter += 1 
-        return counter 
+    def num_edges(self): # get the number of edges
+        counter = 0 # counter is set to 0
+        for n in list(self.graph.keys()): # for each node 
+            for neighbor,weight in self.graph[n]: # for each neighboring node
+                counter += 1 # increment the number of edges
+        return counter # return the number of edges
     
-    def degree(self,node):
-        node = tuple(node) 
-        if node in self.nodes:
-            in_degree = 0 
-            out_degree = len(self.graph[node])
+    def degree(self,node): # calculate the degree of the graph
+        node = tuple(node) # convert the node into tuple
+        if node in self.nodes: # if the node is in the nodes
+            in_degree = 0 # in degree is 0
+            out_degree = len(self.graph[node]) # out degree is simply the length of the nodes going out from that node
 
-            for n in self.nodes: 
-                if node != n:
+            for n in self.nodes: # for each node
+                if node != n: # if both nodes are not the same
                     for neighbor,weight in self.graph[n]:
-                        if neighbor == node:
-                            in_degree += 1
+                        if neighbor == node: # if the neighbor node is coming into the node
+                            in_degree += 1 # increment the number of incoming degrees
 
-            return in_degree,out_degree
+            return in_degree,out_degree # return the in degree and out degree
         else:
-            return None,None 
+            return None,None # otherwise return none
 
-    def print_graph(self):
-        for n in self.nodes:
-            print(n,'-->',self.graph[n]) 
+    def print_graph(self): # print out the entire graph
+        for n in self.nodes: # for each node
+            print(n,'-->',self.graph[n]) # print out the adjacency list
     
-    def bfs(self,source):
-        if len(self.graph) == 0:
+    def bfs(self,source): # BFS Algorithm
+        if len(self.graph) == 0: 
             return []
         
         source = tuple(source)
