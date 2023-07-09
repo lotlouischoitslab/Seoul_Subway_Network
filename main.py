@@ -12,23 +12,6 @@ Author: Louis Sungwoo Cho: 조성우
 Created: 7/8/2023
 '''
 
-def load_data():
-    with open('Data/Seoul_Subway.txt', 'r', encoding = "UTF-8") as file:
-        S = file.read().split('\n')
-        
-    subway = {'No':[], 'Station Name':[], 'Line':[]}
-    for i,x in enumerate(S):
-        if i == 724: # end of the (no, name, line) pair
-            break
-        
-        no, name, line = x.split()
-        subway['No'].append(no)
-        subway['Station Name'].append(name)
-        subway['Line'].append(line)
-
-    subway = pd.DataFrame(subway)
-    return subway
-
 def graph_visualizer(graph):
     G = nx.Graph()
 
@@ -50,9 +33,8 @@ def main():
     print('Seoul Metro Shortest Paths by Louis Sungwoo Cho')
     print('조성우 서울지하철 최단경로찾기')
 
-    subway = load_data()
+    subway = pd.read_excel('Data/stations.xlsx')
     print(subway)
-    subway.to_csv('Data/stations.csv')
    
     
 if __name__ == '__main__':
