@@ -114,7 +114,7 @@ class Graph: # Graph Class
         H_dist = dict()
         for n in self.nodes:
             H_dist[n] = 0
-        return 2
+        return H_dist[n]
 
     def astar(self, source, target): # A* Shortest Paths
         source = tuple(source) # convert source to tuple

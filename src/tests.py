@@ -84,7 +84,7 @@ def testdijkstra():
     graph.add_edge('D', 'E', 2)
 
     source = 'A'
-    target = 'B'
+    target = 'E'
 
     dijkstra_result = graph.dijkstra(source,target)
     print('Dijkstra:',dijkstra_result) 
