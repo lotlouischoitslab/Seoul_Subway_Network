@@ -49,13 +49,10 @@ def graph_visualizer(graph):
 def main():
     print('Seoul Metro Shortest Paths by Louis Sungwoo Cho')
     print('조성우 서울지하철 최단경로찾기')
-    # print()
+
     subway = load_data()
     print(subway)
     subway.to_csv('Data/stations.csv')
-
-     
-
    
     
 if __name__ == '__main__':

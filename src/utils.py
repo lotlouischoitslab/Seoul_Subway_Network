@@ -159,8 +159,8 @@ class Graph: # Graph Class
 
                 else: # If the neighbor is in the closed_list, it means it was visited before
                     if g[neighbor] > g[n] + weight: # check if shorter path has been found
-                        g[neighbor] = g[n] + weight
-                        parents[neighbor] = n
+                        g[neighbor] = g[n] + weight # update the neighbor
+                        parents[neighbor] = n # update the parent
 
                         if neighbor in closed_list: # if the neighbor is in the closed list, this means that it was visited before
                             closed_list.remove(neighbor) # neighbor is removed from closed list
